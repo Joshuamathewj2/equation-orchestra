@@ -19,7 +19,6 @@ import {
   ChevronRight, 
   HelpCircle 
 } from "lucide-react";
-import Image from "next/image";
 
 function OrchestraApp() {
   const {
@@ -79,21 +78,14 @@ function OrchestraApp() {
           >
             {/* Logo Image */}
             <div className="logo-container mb-4 relative">
-              <motion.div
+              <motion.img
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
+                src="/logo.png"
+                alt="Equation Orchestra Logo"
                 className="logo-breathing drop-shadow-2xl w-80 h-auto"
-              >
-                <Image
-                  src="/logo.png"
-                  alt="Equation Orchestra Logo"
-                  width={320}
-                  height={320}
-                  priority
-                  className="w-full h-auto"
-                />
-              </motion.div>
+              />
             </div>
 
             <span className="text-[10px] tracking-[0.4em] text-cyan-400 font-bold uppercase mb-2 animate-pulse">
