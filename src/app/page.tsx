@@ -254,7 +254,7 @@ function OrchestraApp() {
             {/* Explanatory footer panel */}
             <footer className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex gap-3.5 items-start mt-4">
               <div className="p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-indigo-400 shrink-0">
-                <Info className="w-4.5 h-4.5" />
+                <Info className="w-4 h-4" />
               </div>
               <div className="flex-1 flex flex-col justify-center">
                 <span className="text-[9px] tracking-widest text-zinc-500 uppercase font-mono mb-1.5">
