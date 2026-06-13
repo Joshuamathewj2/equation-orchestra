@@ -104,9 +104,6 @@ function OrchestraApp() {
               Interactive Digital Concert Hall
             </span>
 
-            <h1 className="text-3xl md:text-5xl font-extrabold tracking-[0.18em] uppercase bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 via-zinc-100 to-pink-200 mb-4 font-mono">
-              Equation Orchestra
-            </h1>
 
             <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-lg mb-10 font-normal">
               Step into a mathematical soundscape where equations become instruments. Mix, solo, and sequence sines, Fourier series, exponential decay and more. Where Mathematics Becomes Music.
