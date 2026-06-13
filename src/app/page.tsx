@@ -19,6 +19,7 @@ import {
   ChevronRight, 
   HelpCircle 
 } from "lucide-react";
+import Image from "next/image";
 
 function OrchestraApp() {
   const {
@@ -76,167 +77,23 @@ function OrchestraApp() {
             transition={{ duration: 0.5 }}
             className="flex-1 flex flex-col items-center justify-center text-center max-w-2xl px-4 z-10 py-16"
           >
-            {/* Official Equation Orchestra Logo */}
+            {/* Logo Image */}
             <div className="logo-container mb-4 relative">
-              <motion.svg
-                viewBox="0 0 800 400"
-                className="w-80 h-auto logo-breathing drop-shadow-2xl"
+              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
+                className="logo-breathing drop-shadow-2xl w-80 h-auto"
               >
-                {/* Musical Treble Clef - Center Focus */}
-                <g>
-                  {/* Treble Clef Main Curves */}
-                  <path
-                    d="M 400 80 Q 410 120 420 160 Q 430 200 420 240 Q 410 270 390 280 Q 370 285 360 270 Q 355 250 360 220 L 360 160 Q 360 120 370 80 Z"
-                    fill="none"
-                    stroke="url(#trebleGradient)"
-                    strokeWidth="12"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  {/* Top Loop */}
-                  <circle
-                    cx="400"
-                    cy="120"
-                    r="35"
-                    fill="none"
-                    stroke="url(#trebleGradient)"
-                    strokeWidth="12"
-                  />
-                  {/* Dot */}
-                  <circle
-                    cx="395"
-                    cy="220"
-                    r="8"
-                    fill="url(#trebleGradient)"
-                  />
-                </g>
-
-                {/* Left Side - Bass & Instruments */}
-                <g>
-                  {/* Bass Clef */}
-                  <path
-                    d="M 150 180 Q 140 140 150 100 Q 160 80 180 90 Q 190 95 185 130 Q 180 160 170 180 Z"
-                    fill="none"
-                    stroke="url(#leftGradient)"
-                    strokeWidth="8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <circle
-                    cx="175"
-                    cy="150"
-                    r="12"
-                    fill="url(#leftGradient)"
-                  />
-
-                  {/* Piano Keys Indicator */}
-                  <g transform="translate(100, 210)">
-                    {[0, 12, 24, 36, 48].map((x) => (
-                      <rect
-                        key={x}
-                        x={x}
-                        y="0"
-                        width="10"
-                        height="25"
-                        fill="none"
-                        stroke="url(#leftGradient)"
-                        strokeWidth="1.5"
-                      />
-                    ))}
-                  </g>
-
-                  {/* Violin Indicator */}
-                  <path
-                    d="M 120 240 Q 130 220 140 240 Q 140 270 130 280 Q 120 270 120 240 Z"
-                    fill="none"
-                    stroke="url(#leftGradient)"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                  />
-                </g>
-
-                {/* Right Side - Instruments & Sound */}
-                <g>
-                  {/* Synth Pad Indicator */}
-                  <g transform="translate(650, 200)">
-                    {[0, 20, 40, 60].map((y) => (
-                      <rect
-                        key={y}
-                        x="0"
-                        y={y}
-                        width="50"
-                        height="12"
-                        fill="none"
-                        stroke="url(#rightGradient)"
-                        strokeWidth="2"
-                        rx="2"
-                      />
-                    ))}
-                  </g>
-
-                  {/* Bell Indicator */}
-                  <path
-                    d="M 600 200 Q 600 150 620 150 Q 640 150 640 200 Q 640 250 620 260 Q 600 250 600 200 Z"
-                    fill="none"
-                    stroke="url(#rightGradient)"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                  />
-
-                  {/* Drum Indicator */}
-                  <ellipse
-                    cx="700"
-                    cy="240"
-                    rx="25"
-                    ry="20"
-                    fill="none"
-                    stroke="url(#rightGradient)"
-                    strokeWidth="6"
-                  />
-                  <line
-                    x1="680"
-                    y1="240"
-                    x2="720"
-                    y2="240"
-                    stroke="url(#rightGradient)"
-                    strokeWidth="2"
-                  />
-                </g>
-
-                {/* Waveform Base Line */}
-                <path
-                  d="M 80 300 Q 150 250 250 300 Q 350 350 400 300 Q 450 250 550 300 Q 650 350 720 300"
-                  fill="none"
-                  stroke="url(#waveGradient)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  opacity="0.6"
+                <Image
+                  src="/logo.png"
+                  alt="Equation Orchestra Logo"
+                  width={320}
+                  height={320}
+                  priority
+                  className="w-full h-auto"
                 />
-
-                {/* Gradient Definitions */}
-                <defs>
-                  <linearGradient id="trebleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="50%" stopColor="#a78bfa" />
-                    <stop offset="100%" stopColor="#06b6d4" />
-                  </linearGradient>
-                  <linearGradient id="leftGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#818cf8" />
-                    <stop offset="100%" stopColor="#6366f1" />
-                  </linearGradient>
-                  <linearGradient id="rightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#06b6d4" />
-                    <stop offset="100%" stopColor="#a78bfa" />
-                  </linearGradient>
-                  <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#6366f1" />
-                    <stop offset="100%" stopColor="#06b6d4" />
-                  </linearGradient>
-                </defs>
-              </motion.svg>
+              </motion.div>
             </div>
 
             <span className="text-[10px] tracking-[0.4em] text-cyan-400 font-bold uppercase mb-2 animate-pulse">
@@ -254,7 +111,7 @@ function OrchestraApp() {
             {/* Lock Unlock Giant Landing Button */}
             <button
               onClick={unlockAudioContext}
-              className="px-8 py-5 rounded-2xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 text-white font-bold tracking-[0.25em] text-xs md:text-sm shadow-xl shadow-indigo-500/20 hover:shadow-2xl hover:shadow-indigo-500/40 transition-all duration-300 flex items-center justify-center gap-2 group"
+              className="px-8 py-5 rounded-2xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 text-white font-bold tracking-[0.25em] text-xs md:text-sm shadow-xl shadow-indigo-500/20 hover:shadow-2xl hover:shadow-indigo-400/40 transition-all duration-300 group flex items-center gap-2 hover:from-indigo-500 hover:via-fuchsia-500 hover:to-pink-500"
             >
               <Play className="w-4 h-4 fill-white transition-transform group-hover:scale-110" />
               Enter Concert Hall
@@ -408,13 +265,13 @@ function OrchestraApp() {
                   Concert Hall Physics &amp; Mathematics
                 </span>
                 <p className="text-[11px] text-zinc-400 leading-relaxed font-normal">
-                  In classical physics, mathematical functions correspond to physical shapes of waves. Timbre is created by stacking harmonic integers or adding inharmonic frequencies to explore sound design territories beyond traditional acoustic instruments.
+                  In classical physics, mathematical functions correspond to physical shapes of waves. Timbre is created by stacking harmonic integers or adding inharmonic frequencies to explore [...]
                 </p>
               </div>
             </footer>
 
             <div className="text-center text-[9px] text-zinc-700 font-mono mt-2">
-              Equation Orchestra &bull; Portfolio-Grade digital concert environment.
+              Equation Orchestra &bullet; Portfolio-Grade digital concert environment.
             </div>
 
           </motion.div>
