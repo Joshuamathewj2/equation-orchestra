@@ -88,8 +88,8 @@ function OrchestraApp() {
                 <Image
                   src="/logo.png"
                   alt="Equation Orchestra Logo"
-                  width={220}
-                  height={220}
+                  width={320}
+                  height={320}
                   priority
                   className="object-contain"
                   onError={(e) => {
@@ -107,7 +107,7 @@ function OrchestraApp() {
             {/* Lock Unlock Giant Landing Button */}
             <button
               onClick={unlockAudioContext}
-              className="group px-8 py-5 rounded-2xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 text-white font-bold tracking-[0.25em] text-xs md:text-sm shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
+              className="group flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 text-white font-bold tracking-[0.25em] text-xs md:text-sm shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
             >
               <Play className="w-4 h-4 fill-white transition-transform group-hover:scale-110" />
               <span>Enter Concert Hall</span>
