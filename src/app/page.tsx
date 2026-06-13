@@ -100,10 +100,9 @@ function OrchestraApp() {
               </motion.div>
             </div>
 
-            <span className="text-[10px] tracking-[0.4em] text-cyan-400 font-bold uppercase mb-2 animate-pulse">
-              Interactive Digital Concert Hall
-            </span>
-
+            <h1 className="text-3xl md:text-5xl font-extrabold tracking-[0.18em] uppercase bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 via-zinc-100 to-pink-200 mb-4 font-mono">
+              Equation Orchestra
+            </h1>
 
             <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-lg mb-10 font-normal">
               Step into a mathematical soundscape where equations become instruments. Mix, solo, and sequence sines, Fourier series, exponential decay and more. Where Mathematics Becomes Music.
@@ -133,7 +132,9 @@ function OrchestraApp() {
               <div className="text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-2.5 mb-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-                  
+                  <h1 className="text-xl md:text-2xl font-extrabold tracking-[0.22em] text-zinc-100 uppercase font-mono">
+                    EQUATION ORCHESTRA
+                  </h1>
                 </div>
                 <p className="text-[10px] tracking-[0.1em] text-indigo-400 font-medium uppercase font-mono">
                   Synthesized Client-Side via Web Audio API & Canvas
