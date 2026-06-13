@@ -78,7 +78,7 @@ function OrchestraApp() {
             className="flex-1 flex flex-col items-center justify-center text-center max-w-2xl px-4 z-10 py-16"
           >
             {/* Logo Image */}
-            <div className="logo-container mb-6 relative flex justify-center">
+            <div className="logo-container mb-10 relative flex justify-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -99,10 +99,6 @@ function OrchestraApp() {
                 />
               </motion.div>
             </div>
-
-            <h1 className="text-3xl md:text-5xl font-extrabold tracking-[0.18em] uppercase bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 via-zinc-100 to-pink-200 mb-4 font-mono">
-              Equation Orchestra
-            </h1>
 
             <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-lg mb-10 font-normal">
               Step into a mathematical soundscape where equations become instruments. Mix, solo, and sequence sines, Fourier series, exponential decay and more. Where Mathematics Becomes Music.
