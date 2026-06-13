@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { AudioEngineProvider, useAudioEngine } from "@/context/AudioEngineContext";
 import { INSTRUMENTS } from "@/constants/instruments";
 import { FloatingParticles } from "@/components/FloatingParticles";
@@ -77,15 +78,26 @@ function OrchestraApp() {
             className="flex-1 flex flex-col items-center justify-center text-center max-w-2xl px-4 z-10 py-16"
           >
             {/* Logo Image */}
-            <div className="logo-container mb-4 relative">
-              <motion.img
+            <div className="logo-container mb-6 relative flex justify-center">
+              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                src="/logo.png"
-                alt="Equation Orchestra Logo"
-                className="logo-breathing drop-shadow-2xl w-80 h-auto"
-              />
+                className="logo-breathing drop-shadow-2xl"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="Equation Orchestra Logo"
+                  width={220}
+                  height={220}
+                  priority
+                  className="object-contain"
+                  onError={(e) => {
+                    console.error("Logo failed to load");
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </motion.div>
             </div>
 
             <span className="text-[10px] tracking-[0.4em] text-cyan-400 font-bold uppercase mb-2 animate-pulse">
@@ -103,7 +115,7 @@ function OrchestraApp() {
             {/* Lock Unlock Giant Landing Button */}
             <button
               onClick={unlockAudioContext}
-              className="px-8 py-5 rounded-2xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 text-white font-bold tracking-[0.25em] text-xs md:text-sm shadow-xl shadow-indigo-500/20 hover:shadow-2xl hover:shadow-indigo-400/40 transition-all duration-300 group flex items-center gap-2 hover:from-indigo-500 hover:via-fuchsia-500 hover:to-pink-500"
+              className="px-8 py-5 rounded-2xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 text-white font-bold tracking-[0.25em] text-xs md:text-sm shadow-xl shadow-indigo-500/2[...]
             >
               <Play className="w-4 h-4 fill-white transition-transform group-hover:scale-110" />
               Enter Concert Hall
