@@ -136,9 +136,7 @@ function OrchestraApp() {
               <div className="text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-2.5 mb-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-                  <h1 className="text-xl md:text-2xl font-extrabold tracking-[0.22em] text-zinc-100 uppercase font-mono">
-                    EQUATION ORCHESTRA
-                  </h1>
+                  
                 </div>
                 <p className="text-[10px] tracking-[0.1em] text-indigo-400 font-medium uppercase font-mono">
                   Synthesized Client-Side via Web Audio API & Canvas
