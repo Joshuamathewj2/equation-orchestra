@@ -152,12 +152,22 @@ export const SequencerGrid: React.FC = () => {
                     const isBeat = stepIdx % 4 === 0;
                     const isPlayhead = isPlaying && currentStep === stepIdx;
                     
-                    // Determine colors based on instrument
-                    let activeBg = "bg-purple-500 shadow-[0_0_12px_#a855f7]";
-                    if (inst.id === 1) activeBg = "bg-blue-500 shadow-[0_0_12px_#3b82f6]";
-                    if (inst.id === 5) activeBg = "bg-cyan-400 shadow-[0_0_12px_#22d3ee]";
-                    if (inst.id === 6) activeBg = "bg-emerald-400 shadow-[0_0_12px_#34d399]";
-                    if (inst.id === 4) activeBg = "bg-rose-500 shadow-[0_0_12px_#f43f5e]";
+                    // Instrument color palette — each instrument has a unique, musically-evocative color:
+                    // id 1 Bass      → deep indigo/navy  (low, grounding, foundational)
+                    // id 2 Piano     → amber/gold         (warm, melodic, centrepiece)
+                    // id 3 Violin    → fuchsia/pink       (expressive, singing, vibrant)
+                    // id 4 Bell      → sky blue/ice       (bright, crystalline, ethereal)
+                    // id 5 Lead Synth→ lime/neon green    (cutting, modern, lead voice)
+                    // id 6 Drum      → orange/red         (punchy, percussive, energetic)
+                    const INSTRUMENT_COLORS: Record<number, string> = {
+                      1: "bg-indigo-600 shadow-[0_0_14px_#4f46e5]",   // Bass — deep indigo
+                      2: "bg-amber-400 shadow-[0_0_14px_#fbbf24]",    // Piano — warm gold
+                      3: "bg-fuchsia-500 shadow-[0_0_14px_#d946ef]",  // Violin — vivid fuchsia
+                      4: "bg-sky-400 shadow-[0_0_14px_#38bdf8]",      // Bell — icy sky blue
+                      5: "bg-lime-400 shadow-[0_0_14px_#a3e635]",     // Lead Synth — neon lime
+                      6: "bg-orange-500 shadow-[0_0_14px_#f97316]",   // Drum — punchy orange
+                    };
+                    const activeBg = INSTRUMENT_COLORS[inst.id] ?? "bg-purple-500 shadow-[0_0_12px_#a855f7]";
 
                     return (
                       <button
