@@ -35,6 +35,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({
     isPlaying,
     currentStep,
     grid,
+    motionEquations,
   } = useAudioEngine();
 
   const idx = instrument.id - 1;
@@ -102,12 +103,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({
       ctx.lineWidth = 1.5;
 
       // Map color-coded neon glow color
-      const strokeColor = instrument.id === 1 ? "#3b82f6" : // Bass: Cyan/Blue
-                          instrument.id === 2 ? "#6366f1" : // Piano: Indigo
-                          instrument.id === 3 ? "#a855f7" : // Violin: Purple
-                          instrument.id === 4 ? "#ec4899" : // Bell: Pink
-                          instrument.id === 5 ? "#06b6d4" : // Lead Synth: Bright Cyan
-                          "#10b981"; // Drum: Emerald
+      const strokeColor = instrument.hex;
 
       // Ambient blur level: glows brighter when active
       ctx.shadowBlur = currentAmp > 0.05 ? 6 : 2;
@@ -196,11 +192,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({
       }`}
       style={{
         // Define dynamic neon glowing variable based on instrument style
-        "--glow-c": instrument.id === 1 ? "#3b82f6" :
-                    instrument.id === 2 ? "#6366f1" :
-                    instrument.id === 3 ? "#a855f7" :
-                    instrument.id === 4 ? "#ec4899" :
-                    instrument.id === 5 ? "#06b6d4" : "#10b981",
+        "--glow-c": instrument.hex,
       } as React.CSSProperties}
     >
       {/* Decorative colored corner glow */}
@@ -208,11 +200,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({
         <div 
           className={`absolute -top-12 -right-12 w-24 h-24 rounded-full blur-2xl opacity-15 pointer-events-none transition-all duration-300 group-hover:scale-150`}
           style={{
-            backgroundColor: instrument.id === 1 ? "#3b82f6" :
-                             instrument.id === 2 ? "#6366f1" :
-                             instrument.id === 3 ? "#a855f7" :
-                             instrument.id === 4 ? "#ec4899" :
-                             instrument.id === 5 ? "#06b6d4" : "#10b981",
+            backgroundColor: instrument.hex,
           }}
         />
       )}
@@ -234,8 +222,11 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({
             <h3 className="text-sm font-semibold text-zinc-100 uppercase tracking-wider group-hover:text-white">
               {instrument.name}
             </h3>
-            <span className="text-[10px] text-zinc-500 font-mono italic">
+            <span className="block text-[10px] text-zinc-500 font-mono italic" title="Timbre equation (the sound)">
               {instrument.latex}
+            </span>
+            <span className="block text-[10px] font-mono truncate max-w-[220px]" style={{ color: instrument.hex }} title="Motion equation (the melody)">
+              m(t) = {motionEquations[idx]}
             </span>
           </div>
         </div>

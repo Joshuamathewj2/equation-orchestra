@@ -15,20 +15,8 @@ export const SequencerGrid: React.FC = () => {
     togglePlay,
     triggerManualNote,
     instrumentsState,
+    resetGrid,
   } = useAudioEngine();
-
-  // Reset grid back to the default instrument patterns
-  const resetToDefault = () => {
-    INSTRUMENTS.forEach((inst, instIdx) => {
-      // Clear all steps first
-      inst.defaultSteps.forEach((val, stepIdx) => {
-        // Force sync with context state by toggling if they differ
-        if (grid[instIdx][stepIdx] !== val) {
-          toggleGridStep(instIdx, stepIdx);
-        }
-      });
-    });
-  };
 
   return (
     <div className="w-full bg-zinc-950/70 border border-zinc-900 rounded-2xl p-5 md:p-6 shadow-2xl relative overflow-hidden backdrop-blur-md">
@@ -40,7 +28,7 @@ export const SequencerGrid: React.FC = () => {
             CONCERT SEQUENCER GRID
           </h2>
           <p className="text-[10px] text-zinc-500 font-mono">
-            Interactive 16-step rhythm grid. Columns group into 4 beats.
+            The grid decides when each instrument plays; its motion equation decides which note.
           </p>
         </div>
 
@@ -70,7 +58,7 @@ export const SequencerGrid: React.FC = () => {
 
           {/* Reset Defaults */}
           <button
-            onClick={resetToDefault}
+            onClick={resetGrid}
             title="Reset to original mathematical patterns"
             className="p-1.5 px-3 rounded-xl border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-800/80 text-zinc-400 hover:text-white transition-colors flex items-center gap-1 text-xs font-mono cursor-pointer"
           >
@@ -161,11 +149,13 @@ export const SequencerGrid: React.FC = () => {
                     // id 6 Drum      → orange/red         (punchy, percussive, energetic)
                     const INSTRUMENT_COLORS: Record<number, string> = {
                       1: "bg-indigo-600 shadow-[0_0_14px_#4f46e5]",   // Bass — deep indigo
-                      2: "bg-amber-400 shadow-[0_0_14px_#fbbf24]",    // Piano — warm gold
-                      3: "bg-fuchsia-500 shadow-[0_0_14px_#d946ef]",  // Violin — vivid fuchsia
-                      4: "bg-sky-400 shadow-[0_0_14px_#38bdf8]",      // Bell — icy sky blue
-                      5: "bg-lime-400 shadow-[0_0_14px_#a3e635]",     // Lead Synth — neon lime
-                      6: "bg-orange-500 shadow-[0_0_14px_#f97316]",   // Drum — punchy orange
+                      2: "bg-violet-600 shadow-[0_0_14px_#8b5cf6]",   // Cello — violet
+                      3: "bg-amber-400 shadow-[0_0_14px_#fbbf24]",    // Piano — warm gold
+                      4: "bg-fuchsia-500 shadow-[0_0_14px_#d946ef]",  // Violin — vivid fuchsia
+                      5: "bg-cyan-400 shadow-[0_0_14px_#06b6d4]",      // Pad — cyan
+                      6: "bg-orange-500 shadow-[0_0_14px_#f97316]",   // Marimba — orange
+                      7: "bg-emerald-400 shadow-[0_0_14px_#10b981]",  // Flute — emerald
+                      8: "bg-pink-500 shadow-[0_0_14px_#ec4899]",      // Bell — pink
                     };
                     const activeBg = INSTRUMENT_COLORS[inst.id] ?? "bg-purple-500 shadow-[0_0_12px_#a855f7]";
 

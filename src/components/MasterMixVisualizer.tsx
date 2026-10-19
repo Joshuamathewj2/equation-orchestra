@@ -3,10 +3,11 @@
 import React, { useEffect, useRef } from "react";
 import { useAudioEngine } from "@/context/AudioEngineContext";
 import { Activity, Radio, Cpu } from "lucide-react";
+import { SCALES, keyLabel } from "@/lib/music";
 
 export const MasterMixVisualizer: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { isPlaying, getMasterAnalyser, currentChordName, tempo, basePitch, instrumentsState } = useAudioEngine();
+  const { isPlaying, getMasterAnalyser, currentChordName, tempo, keyIndex, scaleKey, instrumentsState } = useAudioEngine();
   const animationRef = useRef<number | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const dataArrayRef = useRef<Uint8Array | null>(null);
@@ -209,12 +210,12 @@ export const MasterMixVisualizer: React.FC = () => {
           </div>
           <div className="h-3 w-[1px] bg-zinc-800" />
           <div>
-            TUNING: <span className="text-indigo-400 font-bold">{basePitch} Hz</span>
+            KEY: <span className="text-indigo-400 font-bold">{keyLabel(keyIndex, SCALES[scaleKey])}</span>
           </div>
           <div className="h-3 w-[1px] bg-zinc-800" />
           <div className="flex items-center gap-1">
             <Cpu className="w-3.5 h-3.5 text-emerald-400" />
-            CHANNELS: <span className="text-emerald-400 font-bold">{activeTracksCount}/6</span>
+            CHANNELS: <span className="text-emerald-400 font-bold">{activeTracksCount}/8</span>
           </div>
         </div>
       </div>

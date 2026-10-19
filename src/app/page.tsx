@@ -8,6 +8,8 @@ import { FloatingParticles } from "@/components/FloatingParticles";
 import { MasterMixVisualizer } from "@/components/MasterMixVisualizer";
 import { SequencerGrid } from "@/components/SequencerGrid";
 import { InstrumentCard } from "@/components/InstrumentCard";
+import { EquationScore } from "@/components/EquationScore";
+import { NOTE_NAMES, SCALES, ScaleKey } from "@/lib/music";
 import { DetailsPanel } from "@/components/DetailsPanel";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -31,8 +33,10 @@ function OrchestraApp() {
     setMasterVolume,
     tempo,
     setTempo,
-    basePitch,
-    setBasePitch,
+    keyIndex,
+    setKeyIndex,
+    scaleKey,
+    setScaleKey,
   } = useAudioEngine();
 
   const [selectedInstrumentId, setSelectedInstrumentId] = useState<number | null>(null);
@@ -101,7 +105,7 @@ function OrchestraApp() {
             </div>
 
             <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-lg mb-10 font-normal">
-              Step into a mathematical soundscape where equations become instruments. Mix, solo, and sequence sines, Fourier series, exponential decay and more. Where Mathematics Becomes Music.
+              Step into a mathematical soundscape where equations are both the instruments and the composer. Fourier series shape each timbre, and motion equations m(t) write the melodies, snapped into key in real time. Where Mathematics Becomes Music.
             </p>
 
             {/* Lock Unlock Giant Landing Button */}
@@ -175,21 +179,33 @@ function OrchestraApp() {
                     />
                   </div>
 
-                  {/* Tuning Fundamental Pitch */}
+                  {/* Key & Mode: every equation is snapped onto this scale */}
                   <div className="flex flex-col gap-1.5 bg-zinc-900/30 border border-zinc-900/60 p-3 rounded-xl">
-                    <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider flex items-center justify-between">
-                      Tuning <span>{basePitch} Hz</span>
+                    <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider">
+                      Key / Mode
                     </span>
-                    <input
-                      type="range"
-                      min="65"
-                      max="300"
-                      step="5"
-                      value={basePitch}
-                      onChange={(e) => setBasePitch(parseInt(e.target.value))}
-                      className="w-full cursor-pointer h-1 bg-zinc-950 rounded appearance-none"
-                      style={{ accentColor: "#a855f7" }}
-                    />
+                    <div className="flex gap-1.5">
+                      <select
+                        value={keyIndex}
+                        onChange={(e) => setKeyIndex(parseInt(e.target.value))}
+                        aria-label="Key"
+                        className="bg-zinc-950 border border-zinc-800 rounded-md text-[10px] font-mono text-zinc-200 px-1 py-0.5 cursor-pointer"
+                      >
+                        {NOTE_NAMES.map((name, i) => (
+                          <option key={name} value={i}>{name}</option>
+                        ))}
+                      </select>
+                      <select
+                        value={scaleKey}
+                        onChange={(e) => setScaleKey(e.target.value as ScaleKey)}
+                        aria-label="Mode"
+                        className="flex-1 min-w-0 bg-zinc-950 border border-zinc-800 rounded-md text-[10px] font-mono text-zinc-200 px-1 py-0.5 cursor-pointer"
+                      >
+                        {Object.entries(SCALES).map(([k, def]) => (
+                          <option key={k} value={k}>{def.name}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
 
                   {/* Tempo BPM */}
@@ -200,7 +216,7 @@ function OrchestraApp() {
                     <input
                       type="range"
                       min="60"
-                      max="180"
+                      max="160"
                       step="2"
                       value={tempo}
                       onChange={(e) => setTempo(parseInt(e.target.value))}
@@ -211,7 +227,7 @@ function OrchestraApp() {
                 </div>
 
                 <div className="text-[8px] text-zinc-600 font-mono mt-4 text-right relative z-10">
-                  Base pitch: A3 Reference tuning scale
+                  12-TET tuning &bull; chords follow the mode&apos;s diatonic progression
                 </div>
               </div>
 
@@ -220,6 +236,11 @@ function OrchestraApp() {
                 <MasterMixVisualizer />
               </div>
 
+            </section>
+
+            {/* Equation Score: motion equations drawn and snapped into key */}
+            <section>
+              <EquationScore />
             </section>
 
             {/* Concert Sequencer Grid (Middle) */}
@@ -235,7 +256,7 @@ function OrchestraApp() {
                     Orchestra Stage Mix
                   </h2>
                   <p className="text-[9px] text-zinc-600 font-mono">
-                    6 active channels. Set track volumes, mute/solo states or click details to tune.
+                    8 channels, each with a timbre equation (its sound) and a motion equation (its melody).
                   </p>
                 </div>
               </div>
